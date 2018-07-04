@@ -1,11 +1,16 @@
-cc	=	gcc
-OBJ=	main.o	List.o	Map.o	status.o
-astar	:	$(OBJ)
-cc	-o	astar	$(OBJ)
-main.o	:	List.h	Map.h
-List.o	:	status.h	List.h
-Map.o	:	List.h	Map.h
-status.o	:	status.h
-.phony	:	clean
-clean	:
-rm	astar	$(OBJ)
+CC	=	gcc
+OBJ =	main.o	List.o	Map.o	status.o
+CFLAGS = -c -g 
+astar:	$(OBJ)
+	$(CC)	-o	astar	$(OBJ)
+main.o:	main.c 
+	$(CC) $(CFLAGS) $^ -o $@
+List.o: List.c
+	$(CC) $(CFLAGS) $^ -o $@
+Map.o:	Map.c
+	$(CC) $(CFLAGS) $^ -o $@
+status.o:	status.c 
+	$(CC) $(CFLAGS) $^ -o $@
+.PHONY:	clean
+clean:
+	rm	astar	$(OBJ)
